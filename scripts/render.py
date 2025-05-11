@@ -32,6 +32,9 @@ def render_gds(
     bbox = None
     for layer in lv.each_layer():
         layer_name = layer.name
+        # Remove ditheering from metal4, for better looking artwork
+        if layer_name == "Metal4.drawing":
+            layer.dither_pattern = 0
         if layer_name == BOUNDARY_LAYER:
             bbox = layer.bbox()
             layer.visible = True
