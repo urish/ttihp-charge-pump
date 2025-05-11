@@ -1,0 +1,57 @@
+** sch_path: /home/uri/p/ttihp-charge-pump/xschem/dickson_tb.sch
+**.subckt dickson_tb
+V3 VDD GND 1.2
+V2 clk GND PULSE(1.2 0 0 30p 30p 250n 500n)
+V1 ena GND 1.2
+V4 VSS GND 0
+R1 vout GND 7Meg m=1
+x1 clk ena VDD VSS vout dickson
+**** begin user architecture code
+
+.lib /home/uri/p/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.lib /home/uri/p/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.include /home/uri/p/IHP-Open-PDK/ihp-sg13g2/libs.ref/sg13g2_stdcell/spice/sg13g2_stdcell.spice
+
+
+
+.param temp=27
+.param mc_ok = 1
+
+.tran 50n 100u
+.save all
+.save i(v3)
+
+.control
+run
+write dickson_tb.raw
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  dickson.sym # of pins=5
+** sym_path: /home/uri/p/ttihp-charge-pump/xschem/dickson.sym
+** sch_path: /home/uri/p/ttihp-charge-pump/xschem/dickson.sch
+.subckt dickson clk ena VDD VSS VOUT
+*.ipin clk
+*.ipin ena
+*.ipin VDD
+*.ipin VSS
+*.opin VOUT
+XM5 stage1 net1 net1 net1 sg13_lv_nmos w=3u l=0.13u ng=1 m=1
+XM6 stage2 stage1 stage1 stage1 sg13_lv_nmos w=3u l=0.13u ng=1 m=1
+XM7 stage3 stage2 stage2 stage2 sg13_lv_nmos w=3u l=0.13u ng=1 m=1
+XM8 VOUT stage3 stage3 stage3 sg13_lv_nmos w=3u l=0.13u ng=1 m=1
+XC1 stage1 clka cap_cmim w=30.0e-6 l=30.0e-6 m=1
+XC2 stage2 clkb cap_cmim w=30.0e-6 l=30.0e-6 m=1
+XC3 stage3 clka cap_cmim w=30.0e-6 l=30.0e-6 m=1
+XC4 VOUT VSS cap_cmim w=30.0e-6 l=30.0e-6 m=1
+x1 clk ena VDD VSS clka sg13g2_and2_2
+x2 clk VDD VSS net2 sg13g2_inv_1
+x3 net2 ena VDD VSS clkb sg13g2_and2_2
+x4 ena VDD VSS net1 sg13g2_buf_16
+.ends
+
+.GLOBAL GND
+.end
