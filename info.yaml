@@ -1,21 +1,21 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
+  title:        "Dickson Charge Pump"      # Project title
+  author:       "Uri Shaked"      # Your name
+  discord:      "urish"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "A 3-stage Dickson charge pump"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     2_000_000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 200x150 uM.
   tiles: "1x1"          # Valid values for analog projects: 1x2, 1x2, 2x2
 
   # How many analog pins does your project use?
-  analog_pins: 2        # Valid values: 0 to 6
+  analog_pins: 1        # Valid values: 0 to 6
   uses_3v3: false       # Keep false for this shuttle
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_urish_dickson_pump"
 
   # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
   source_files:        
@@ -54,7 +54,7 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: ""
+  ua[0]: "vout"
   ua[1]: ""
   ua[2]: ""
   ua[3]: ""
