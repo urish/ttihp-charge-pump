@@ -1,11 +1,9 @@
 .DS_Store
 .idea
 .vscode
-*.vcd
 runs
 tt_submission
-src/user_config.tcl
-test/sim_build
-test/__pycache__/
-test/results.xml
-test/gate_level_netlist.v
+tt_um_urish_dickson_pump.ext
+tt_um_urish_dickson_pump.nodes
+tt_um_urish_dickson_pump.res.ext
+tt_um_urish_dickson_pump.sim
