@@ -15,6 +15,10 @@ A 3-stage dickson charge pump.
 
 Apply a clock signal of 2 MHz to the `clk` input. You should see the output voltage on the `ua[0]` (vout) pin rise to ~3.2 V.
 
+## Layout
+
+![layout.png](layout.png)
+
 ## Post layout simulation results
 
 Tested with 2 MHz input clock and 7 Mega Ohm load.
